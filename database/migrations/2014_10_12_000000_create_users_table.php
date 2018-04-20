@@ -18,9 +18,14 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
+            $table->integer('role');
             $table->rememberToken();
             $table->float('holiday', 4, 1)->nullable();
             $table->float('rest', 4, 1)->nullable();
+            $table->float('holidayed', 4, 1)->nullable();
+            $table->float('rested', 4, 1)->nullable();
+            $table->float('sicked', 4, 1)->nullable();
+            $table->float('triped', 4, 1)->nullable();
             $table->timestamps();
         });
     }

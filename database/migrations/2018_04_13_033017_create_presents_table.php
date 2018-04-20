@@ -15,8 +15,8 @@ class CreatePresentsTable extends Migration
     {
         Schema::create('presents', function (Blueprint $table) {
             $table->increments('id');
-            $table->time('begin');
-            $table->time('end');
+            $table->time('begin')->nullable();
+            $table->time('end')->nullable();
             $table->timestamps();
         });
     }

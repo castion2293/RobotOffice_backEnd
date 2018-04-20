@@ -18,7 +18,7 @@ class CreateRestsTable extends Migration
             $table->integer('user_id')->index()->unsigned();
             $table->time('begin');
             $table->time('end');
-            $table->string('location');
+            $table->string('reason');
             $table->timestamps();
         });
     }
