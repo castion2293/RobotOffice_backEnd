@@ -15,10 +15,10 @@ class CreateRestsTable extends Migration
     {
         Schema::create('rests', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->index()->unsigned();
             $table->time('begin');
             $table->time('end');
             $table->string('reason');
+            $table->float('hours', 4, 1);
             $table->timestamps();
         });
     }

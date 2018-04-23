@@ -22,10 +22,6 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->float('holiday', 4, 1)->nullable();
             $table->float('rest', 4, 1)->nullable();
-            $table->float('holidayed', 4, 1)->nullable();
-            $table->float('rested', 4, 1)->nullable();
-            $table->float('sicked', 4, 1)->nullable();
-            $table->float('triped', 4, 1)->nullable();
             $table->timestamps();
         });
     }

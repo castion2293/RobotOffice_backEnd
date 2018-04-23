@@ -58,9 +58,4 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasOne('App\Schedule');
     }
-
-    public function rests()
-    {
-        return $this->hasMany('App\Rest');
-    }
 }

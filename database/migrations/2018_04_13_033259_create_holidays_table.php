@@ -17,7 +17,7 @@ class CreateHolidaysTable extends Migration
             $table->increments('id');
             $table->time('begin');
             $table->time('end');
-            $table->integer('type')->unsigned();
+            $table->float('hours', 4, 1);
             $table->timestamps();
         });
     }

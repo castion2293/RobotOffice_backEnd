@@ -18,6 +18,7 @@ class CreateTripsTable extends Migration
             $table->time('begin');
             $table->time('end');
             $table->string('location');
+            $table->float('hours', 4, 1);
             $table->timestamps();
         });
     }

@@ -21,10 +21,6 @@ $factory->define(App\User::class, function (Faker $faker) {
         'role' => 1,
         'remember_token' => str_random(10),
         'holiday' => 56.0,
-        'rest' => 0.0,
-        'holidayed' => 0.0,
-        'rested' => 0.0,
-        'sicked' => 0.0,
-        'triped' => 0.0
+        'rest' => 7.5,
     ];
 });

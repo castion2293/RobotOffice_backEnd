@@ -15,6 +15,6 @@ class Holiday extends Model
 
     public function types()
     {
-        return $this->belongsToMany('App\HolidayType', 'holiday_type', 'type_id', 'holiday_id');
+        return $this->belongsToMany('App\Type', 'holiday_type');
     }
 }

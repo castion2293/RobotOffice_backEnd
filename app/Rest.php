@@ -8,8 +8,8 @@ class Rest extends Model
 {
     protected $guarded = [];
 
-    public function users()
+    public function schedules()
     {
-        return $this->belongsTo('App\User');
+        return $this->morphMany('App\Schedule', 'action');
     }
 }

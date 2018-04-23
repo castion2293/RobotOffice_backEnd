@@ -17,12 +17,11 @@ class CreateHolidayTypeTable extends Migration
             $table->increments('id');
             $table->integer('holiday_id')->index()->unsigned();
             $table->integer('type_id')->index()->unsigned();
-            $table->timestamps();
         });
 
         Schema::table('holiday_type', function(Blueprint $table) {
             $table->foreign('holiday_id')->references('id')->on('holidays');
-            $table->foreign('type_id')->references('id')->on('holiday_types');
+            $table->foreign('type_id')->references('id')->on('types');
         });
     }
 

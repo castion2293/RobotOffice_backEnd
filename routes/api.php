@@ -13,4 +13,5 @@ Route::group([
 
 Route::group(['middleware' => 'auth:api'], function () {
     Route::resource('schedule','ScheduleController');
+    Route::get('holiday/type', 'TypeController@index');
 });
