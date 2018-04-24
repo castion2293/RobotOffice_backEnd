@@ -41,4 +41,36 @@ class CreateTripScheduleTest extends TestCase
             'hours' => 9,
         ]);
     }
+
+    /** @test */
+    public function a_user_can_delete_a_trip()
+    {
+        $trip = create('App\Trip', [
+            'begin' => '08:30',
+            'end' => '19:30',
+            'location' => '台北',
+            'hours' => 11
+        ]);
+
+        $schedule = create('App\Schedule', [
+            'user_id' => auth()->id(),
+            'date' => '2018-04-29',
+            'action_type' => 'App\Trip',
+            'action_id' => $trip->id
+        ]);
+
+        $this->delete('/api/schedule/' . $schedule->id)->assertStatus(200);
+
+        $this->assertDatabaseMissing('schedules', [
+            'date' => '2018-04-29',
+            'action_type' => 'App\Trip'
+        ]);
+
+        $this->assertDatabaseMissing('trips', [
+            'begin' => '08:30',
+            'end' => '19:30',
+            'location' => '台北',
+            'hours' => 11,
+        ]);
+    }
 }

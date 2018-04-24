@@ -28,6 +28,13 @@ class ScheduleTrip extends AbstractScheduleType
         return response(['message' => 'success upload'], 200);
     }
 
+    public function delete(Schedule $schedule)
+    {
+        $schedule->delete();
+
+        return response(['message' => 'success deleted'], 200);
+    }
+
     private function createNewTrip($request)
     {
         $trip = $this->createTrip($request);

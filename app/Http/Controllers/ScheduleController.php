@@ -2,21 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use App\Filters\ScheduleFilters;
 use App\Present;
 use App\Schedule;
 use App\Services\Schedule\ScheduleFactoryService;
+use App\Transformers\ScheduleTransformer;
 use Illuminate\Http\Request;
 
 class ScheduleController extends Controller
 {
     /**
+     * @var ScheduleTransformer
+     */
+    protected $transformer;
+
+    public function __construct(ScheduleTransformer $transformer)
+    {
+        $this->transformer = $transformer;
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(ScheduleFilters $filters)
     {
-        //
+        $schedules = Schedule::filter($filters)->get();
+
+        return $this->transformer->transform($schedules);
     }
 
     /**
@@ -82,6 +96,8 @@ class ScheduleController extends Controller
      */
     public function destroy(Schedule $schedule)
     {
-        //
+        $type = str_replace('App\\', '', $schedule->action_type);
+
+        return ScheduleFactoryService::create($type)->delete($schedule);
     }
 }

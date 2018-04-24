@@ -8,6 +8,8 @@ class Holiday extends Model
 {
     protected $guarded = [];
 
+    protected $with = 'types';
+
     public function schedules()
     {
         return $this->morphMany('App\Schedule', 'action');

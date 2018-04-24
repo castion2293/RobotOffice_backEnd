@@ -130,4 +130,32 @@ class CreatePresentScheduleTest extends TestCase
             'time' => '07:30'
         ])->assertStatus(400);
     }
+
+    /** @test */
+    public function a_user_can_delete_a_present_schedule()
+    {
+        $present = create('App\Present', [
+            'begin' => '08:30',
+            'end' => '19:30'
+        ]);
+
+        $schedule = create('App\Schedule', [
+            'user_id' => auth()->id(),
+            'date' => '2018-04-29',
+            'action_type' => 'App\Present',
+            'action_id' => $present->id
+        ]);
+
+        $this->delete('/api/schedule/' . $schedule->id)->assertStatus(200);
+
+        $this->assertDatabaseMissing('schedules', [
+            'date' => '2018-04-29',
+            'action_type' => 'App\Present'
+        ]);
+
+        $this->assertDatabaseMissing('presents', [
+            'begin' => '08:30',
+            'end' => '19:30'
+        ]);
+    }
 }

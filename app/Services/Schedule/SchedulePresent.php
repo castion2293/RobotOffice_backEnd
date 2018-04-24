@@ -11,6 +11,7 @@ namespace App\Services\Schedule;
 
 use App\Present;
 use App\Schedule;
+use App\Transformers\ScheduleTransformer;
 use Illuminate\Http\Request;
 
 class SchedulePresent extends AbstractScheduleType
@@ -44,6 +45,13 @@ class SchedulePresent extends AbstractScheduleType
         }
 
         return response(['message' => 'success upload'], 200);
+    }
+
+    public function delete(Schedule $schedule)
+    {
+        $schedule->delete();
+
+        return response(['message' => 'success deleted'], 200);
     }
 
     private function createPresentForWorkOn($request)

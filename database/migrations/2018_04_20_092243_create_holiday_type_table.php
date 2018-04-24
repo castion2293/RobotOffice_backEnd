@@ -20,8 +20,8 @@ class CreateHolidayTypeTable extends Migration
         });
 
         Schema::table('holiday_type', function(Blueprint $table) {
-            $table->foreign('holiday_id')->references('id')->on('holidays');
-            $table->foreign('type_id')->references('id')->on('types');
+            $table->foreign('holiday_id')->references('id')->on('holidays')->onDelete('cascade');;
+            $table->foreign('type_id')->references('id')->on('types')->onDelete('cascade');;
         });
     }
 

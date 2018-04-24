@@ -29,6 +29,15 @@ class ScheduleRest extends AbstractScheduleType
         return response(['message' => 'success upload'], 200);
     }
 
+    public function delete(Schedule $schedule)
+    {
+        $this->complementHours($schedule);
+
+        $schedule->delete();
+
+        return response(['message' => 'success deleted'], 200);
+    }
+
     private function createNewRest($request)
     {
         $rest = $this->createRest($request);
@@ -67,5 +76,14 @@ class ScheduleRest extends AbstractScheduleType
             'action_id' => $rest->id
         ]);
         return $schedule;
+    }
+
+    /**
+     * @param Schedule $schedule
+     */
+    private function complementHours(Schedule $schedule): void
+    {
+        $this->user->rest -= $schedule->action->hours;
+        $this->user->save();
     }
 }

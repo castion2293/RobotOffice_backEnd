@@ -54,6 +54,15 @@ class ScheduleHoliday extends AbstractScheduleType
         return response(['message' => 'success upload'], 200);
     }
 
+    public function delete(Schedule $schedule)
+    {
+        $this->complementHours($schedule);
+
+        $schedule->delete();
+
+        return response(['message' => 'success deleted'], 200);
+    }
+
     private function createHolidayForBusiness($request)
     {
         $holidayType = Type::where('type', $request->type)->first();
@@ -122,5 +131,19 @@ class ScheduleHoliday extends AbstractScheduleType
             'action_type' => 'App\\' . $request->category,
             'action_id' => $holiday->id
         ]);
+    }
+
+    /**
+     * @param Schedule $schedule
+     */
+    private function complementHours(Schedule $schedule): void
+    {
+        if ($schedule->action->types()->first()->type == '特休') {
+            $this->user->holiday += $schedule->action->hours;
+            $this->user->save();
+        } else if ($schedule->action->types()->first()->type == '補休') {
+            $this->user->rest += $schedule->action->hours;
+            $this->user->save();
+        }
     }
 }
