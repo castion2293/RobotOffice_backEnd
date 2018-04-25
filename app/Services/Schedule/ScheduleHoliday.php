@@ -138,10 +138,10 @@ class ScheduleHoliday extends AbstractScheduleType
      */
     private function complementHours(Schedule $schedule): void
     {
-        if ($schedule->action->types()->first()->type == '特休') {
+        if ($schedule->holidayType == '特休') {
             $this->user->holiday += $schedule->action->hours;
             $this->user->save();
-        } else if ($schedule->action->types()->first()->type == '補休') {
+        } else if ($schedule->holidayType == '補休') {
             $this->user->rest += $schedule->action->hours;
             $this->user->save();
         }

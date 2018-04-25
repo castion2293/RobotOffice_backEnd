@@ -27,4 +27,9 @@ class ScheduleFilters extends QueryFilter
     {
         return $this->builder->where('action_type', 'App\\' . $type );
     }
+
+    public function group($type)
+    {
+        return $this->builder->groupBy($type);
+    }
 }

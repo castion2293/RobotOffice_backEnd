@@ -2,14 +2,14 @@
 /**
  * Created by PhpStorm.
  * User: robotech
- * Date: 2018/4/24
- * Time: 上午 10:40
+ * Date: 2018/4/25
+ * Time: 上午 09:01
  */
 
-namespace App\Transformers;
+namespace App\Transformers\Schedule;
 
 
-class ScheduleTransformer
+class TransformerCalendar extends AbstractTransformerType
 {
     public function transform($attributes)
     {

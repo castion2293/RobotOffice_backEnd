@@ -6,7 +6,8 @@ use App\Filters\ScheduleFilters;
 use App\Present;
 use App\Schedule;
 use App\Services\Schedule\ScheduleFactoryService;
-use App\Transformers\ScheduleTransformer;
+
+use App\Transformers\Schedule\TransformerFactory;
 use Illuminate\Http\Request;
 
 class ScheduleController extends Controller
@@ -14,12 +15,12 @@ class ScheduleController extends Controller
     /**
      * @var ScheduleTransformer
      */
-    protected $transformer;
-
-    public function __construct(ScheduleTransformer $transformer)
-    {
-        $this->transformer = $transformer;
-    }
+//    protected $transformer;
+//
+//    public function __construct(ScheduleTransformer $transformer)
+//    {
+//        $this->transformer = $transformer;
+//    }
 
     /**
      * Display a listing of the resource.
@@ -29,8 +30,10 @@ class ScheduleController extends Controller
     public function index(ScheduleFilters $filters)
     {
         $schedules = Schedule::filter($filters)->get();
-
-        return $this->transformer->transform($schedules);
+//dd($schedules);
+        if (request()->exists('method')) {
+            return TransformerFactory::create(request('method'))->transform($schedules);
+        }
     }
 
     /**

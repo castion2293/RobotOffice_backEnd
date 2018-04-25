@@ -37,4 +37,9 @@ class Schedule extends Model
     {
         return $filters->apply($query->where('user_id', auth()->id()));
     }
+
+    public function getHolidayTypeAttribute()
+    {
+        return $this->action->types()->first()->type;
+    }
 }
