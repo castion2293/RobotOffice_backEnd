@@ -13,7 +13,7 @@ class TransformerRestAnalysis extends AbstractTransformerType
 {
     public function transform($attributes)
     {
-        return $attributes->map(function ($schedule) {
+        return collect([])->put('data', $attributes->map(function ($schedule) {
             return [
                 'id' => $schedule->id,
                 'date' => $schedule->date,
@@ -22,7 +22,7 @@ class TransformerRestAnalysis extends AbstractTransformerType
                 'reason' => $schedule->action->reason,
                 'hours' => $schedule->action->hours
             ];
-        })->put('hours_count', $attributes->reduce(function ($carry, $schedule) {
+        }))->put('hours_count', $attributes->reduce(function ($carry, $schedule) {
             return $carry + $schedule->action->hours;
         }));
     }

@@ -43,15 +43,17 @@ class ReadScheduleTest extends TestCase
 
         $this->get('/api/schedule?year=2018&type=Present&method=PresentAnalysis')
                 ->assertJson([
-                    [
-                        'date' => '2018-04-02',
-                        'begin' => '08:30:00',
-                        'end' => '17:30:00'
-                    ],
-                    [
-                        'date' => '2018-04-03',
-                        'begin' => '08:35:00',
-                        'end' => '17:39:00'
+                    'data' => [
+                        [
+                            'date' => '2018-04-02',
+                            'begin' => '08:30:00',
+                            'end' => '17:30:00'
+                        ],
+                        [
+                            'date' => '2018-04-03',
+                            'begin' => '08:35:00',
+                            'end' => '17:39:00'
+                        ],
                     ],
                     'count' => 2
                 ]);
@@ -94,19 +96,21 @@ class ReadScheduleTest extends TestCase
 
         $this->get('/api/schedule?year=2018&type=Holiday&method=HolidayAnalysis')
             ->assertJson([
-                [
-                    'date' => '2018-04-02',
-                    'begin' => '08:30:00',
-                    'end' => '17:30:00',
-                    'type' => '事假',
-                    'hours' => 8
-                ],
-                [
-                    'date' => '2018-04-03',
-                    'begin' => '13:30:00',
-                    'end' => '17:30:00',
-                    'type' => '特休',
-                    'hours' => 4
+                'data' => [
+                    [
+                        'date' => '2018-04-02',
+                        'begin' => '08:30:00',
+                        'end' => '17:30:00',
+                        'type' => '事假',
+                        'hours' => 8
+                    ],
+                    [
+                        'date' => '2018-04-03',
+                        'begin' => '13:30:00',
+                        'end' => '17:30:00',
+                        'type' => '特休',
+                        'hours' => 4
+                    ],
                 ],
                 'hours_count' => 12
             ]);
@@ -141,19 +145,21 @@ class ReadScheduleTest extends TestCase
 
         $this->get('/api/schedule?year=2018&type=Trip&method=TripAnalysis')
             ->assertJson([
-                [
-                    'date' => '2018-04-02',
-                    'begin' => '08:30:00',
-                    'end' => '17:30:00',
-                    'location' => '台北',
-                    'hours' => 9
-                ],
-                [
-                    'date' => '2018-04-03',
-                    'begin' => '13:30:00',
-                    'end' => '17:30:00',
-                    'location' => '高雄',
-                    'hours' => 4
+                'data' => [
+                    [
+                        'date' => '2018-04-02',
+                        'begin' => '08:30:00',
+                        'end' => '17:30:00',
+                        'location' => '台北',
+                        'hours' => 9
+                    ],
+                    [
+                        'date' => '2018-04-03',
+                        'begin' => '13:30:00',
+                        'end' => '17:30:00',
+                        'location' => '高雄',
+                        'hours' => 4
+                    ],
                 ],
                 'hours_count' => 13
             ]);
@@ -188,19 +194,21 @@ class ReadScheduleTest extends TestCase
 
         $this->get('/api/schedule?year=2018&type=Rest&method=RestAnalysis')
             ->assertJson([
-                [
-                    'date' => '2018-04-02',
-                    'begin' => '18:30:00',
-                    'end' => '20:30:00',
-                    'reason' => '台北出差',
-                    'hours' => 2
-                ],
-                [
-                    'date' => '2018-04-03',
-                    'begin' => '18:30:00',
-                    'end' => '21:30:00',
-                    'reason' => '高雄出差',
-                    'hours' => 3
+                'data' => [
+                    [
+                        'date' => '2018-04-02',
+                        'begin' => '18:30:00',
+                        'end' => '20:30:00',
+                        'reason' => '台北出差',
+                        'hours' => 2
+                    ],
+                    [
+                        'date' => '2018-04-03',
+                        'begin' => '18:30:00',
+                        'end' => '21:30:00',
+                        'reason' => '高雄出差',
+                        'hours' => 3
+                    ],
                 ],
                 'hours_count' => 5
             ]);

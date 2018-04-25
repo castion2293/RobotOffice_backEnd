@@ -13,13 +13,13 @@ class TransformerPresentAnalysis extends AbstractTransformerType
 {
     public function transform($attributes)
     {
-       return $attributes->map(function ($schedule) {
+        return collect([])->put('data', $attributes->map(function ($schedule) {
             return [
                 'id' => $schedule->id,
                 'date' => $schedule->date,
                 'begin' => $schedule->action->begin,
                 'end' => $schedule->action->end
             ];
-        })->put('count', $attributes->count());
+        }))->put('count', $attributes->count());
     }
 }
