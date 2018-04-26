@@ -28,8 +28,8 @@ class ScheduleFilters extends QueryFilter
         return $this->builder->where('action_type', 'App\\' . $type );
     }
 
-    public function group($type)
+    public function order($order = 'desc')
     {
-        return $this->builder->groupBy($type);
+        return $this->builder->orderBy('date', $order);
     }
 }
