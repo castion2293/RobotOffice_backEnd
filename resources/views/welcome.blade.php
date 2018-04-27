@@ -9,7 +9,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <!-- Styles -->
         <style>
             html, body {
@@ -62,6 +62,10 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            body {
+                font-family: "Lato", sans-serif;
+            }
         </style>
     </head>
     <body>
@@ -69,24 +73,20 @@
             @if (Route::has('admin.login'))
                 <div class="top-right links">
                     @auth('admin')
-                        <a href="{{ route('admin.dashboard') }}">Dashboard</a>
+                        <a href="{{ route('admin.dashboard') }}">
+                            <span class="w3-large"><strong>管理系統</strong></span>
+                        </a>
                     @else
-                        <a href="{{ route('admin.login') }}">Login</a>
+                        <a href="{{ route('admin.login') }}">
+                            <span class="w3-large"><strong>登入</strong></span>
+                        </a>
                     @endauth
                 </div>
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                <div class="w3-xxxlarge m-b-md">
+                    羅博特科技e化後台管理系統
                 </div>
             </div>
         </div>

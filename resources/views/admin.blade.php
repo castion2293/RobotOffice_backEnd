@@ -3,18 +3,14 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Admin Dashboard</div>
+                <div class="card-header">
+                    <span><strong>行事曆</strong></span>
+                </div>
 
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in as <strong>ADMIN</strong>
+                    <calendar></calendar>
                 </div>
             </div>
         </div>
