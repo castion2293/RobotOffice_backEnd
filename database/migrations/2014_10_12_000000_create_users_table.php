@@ -18,8 +18,9 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->integer('role');
             $table->rememberToken();
+            $table->date('start_date');
+            $table->float('holiday_days', 4, 1)->nullable();
             $table->float('holiday', 4, 1)->nullable();
             $table->float('rest', 4, 1)->nullable();
             $table->timestamps();

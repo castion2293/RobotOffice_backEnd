@@ -18,8 +18,9 @@ $factory->define(App\User::class, function (Faker $faker) {
         'name' => 'Nick',
         'email' => 'nick@robot-tech.com.tw',
         'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
-        'role' => 1,
         'remember_token' => str_random(10),
+        'start_date' => $faker->date(),
+        'holiday_days' => 56.0,
         'holiday' => 56.0,
         'rest' => 7.5,
     ];

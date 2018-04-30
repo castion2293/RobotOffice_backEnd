@@ -9,7 +9,7 @@
                         <span><strong>員工資料</strong></span>
                     </div>
 
-                    <Userlists></Userlists>
+                    <Userlists users="{{ $data }}"></Userlists>
                 </div>
             </div>
         </div>

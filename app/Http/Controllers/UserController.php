@@ -14,7 +14,20 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('employees');
+        $users = User::all();
+
+        $data = $users->map(function ($user) {
+            return [
+                'name' => $user->name,
+                'email' => $user->email,
+                'start_date' => $user->start_date,
+                'holidays' => $user->holiday_days,
+                'holiday' => $user->holiday,
+                'rest' => $user->rest
+            ];
+        });
+
+        return view('employees', compact('data'));
     }
 
     /**

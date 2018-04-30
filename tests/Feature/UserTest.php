@@ -16,8 +16,17 @@ class UserTest extends TestCase
     }
     
     /** @test */
-    public function a_admin_can_access_all_users()
-    {
-        
-    }
+//    public function a_admin_can_access_all_users()
+//    {
+//        $admin = create('App\Admin');
+//
+//        $user = create('App\User');
+//
+//        $this->actingAs($admin, 'admin');
+//
+//         = $this->get('/admin/employees');
+//
+//        dd($users);
+//
+//    }
 }

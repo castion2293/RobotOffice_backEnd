@@ -1,49 +1,16 @@
 <template>
-    <full-calendar :events="events" :config="config" ref="calendar"></full-calendar>
+    <v-app>
+        <full-calendar :events="events" :config="config" ref="calendar"></full-calendar>
+    </v-app>
 </template>
 
 <script>
     export default {
         name: "Calendar",
+        props: ['schedules'],
         data () {
             return {
-                events: [
-                    {
-                        title  : 'Nick 上班',
-                        start  : '2018-04-27T08:30:00',
-                        end    : '2018-04-27T17:30:00',
-                        color  : '#F44336',
-                        textColor: 'white',
-                    },
-                    {
-                        title  : 'Edward 上班',
-                        start  : '2018-04-27T08:30:00',
-                        end    : '2018-04-27T17:30:00',
-                        color  : '#E91E63',
-                        textColor: 'white',
-                    },
-                    {
-                        title  : 'Sylvia 請特休 ~ 17:30',
-                        start  : '2018-04-27T08:30:00',
-                        end    : '2018-04-27T17:30:00',
-                        color  : '#2196F3',
-                        textColor: 'white',
-                    },
-                    {
-                        title  : 'Mandy 上班',
-                        start  : '2018-04-27T08:30:00',
-                        end    : '2018-04-27T17:30:00',
-                        color  : '#4CAF50',
-                        textColor: 'white',
-                    },
-                    {
-                        title  : 'Email 上班',
-                        start  : '2018-04-27T08:30:00',
-                        end    : '2018-04-27T17:30:00',
-                        color  : '#FFC107',
-                        textColor: 'white',
-                    }
-                ],
+                events: JSON.parse(this.schedules),
                 config: {
                     defaultView: 'month',
                     locale: 'zh-cn',
@@ -54,7 +21,6 @@
                         right: ''
                     },
                     height: 530,
-
                 },
             }
         }

@@ -25,7 +25,7 @@ class Schedule extends Model
 
     public function users()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User', 'user_id');
     }
 
     public function action()
@@ -35,7 +35,9 @@ class Schedule extends Model
 
     public function scopeFilter($query, QueryFilter $filters)
     {
-        return $filters->apply($query->where('user_id', auth()->id()));
+        auth()->guard('admin')->check() ? $builder = $query : $builder = $query->where('user_id', auth()->id());
+
+        return $filters->apply($builder);
     }
 
     public function getHolidayTypeAttribute()

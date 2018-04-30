@@ -1,23 +1,26 @@
 <template>
-    <v-data-table
-            :headers="headers"
-            :items="items"
-            item-key="id"
-            class="elevation-1"
-    >
-        <template slot="items" slot-scope="props">
-            <td>{{ props.item.name }}</td>
-            <td class="text-xs-left">{{ props.item.email }}</td>
-            <td class="text-xs-left">{{ props.item.start_date }}</td>
-            <td class="text-xs-left">{{ props.item.holidays }} hr</td>
-            <td class="text-xs-left">{{ props.item.holiday }} hr</td>
-            <td class="text-xs-left">{{ props.item.rest }} hr</td>
-        </template>
-    </v-data-table>
+    <v-app>
+        <v-data-table
+                :headers="headers"
+                :items="items"
+                item-key="id"
+                class="elevation-1"
+        >
+            <template slot="items" slot-scope="props">
+                <td>{{ props.item.name }}</td>
+                <td class="text-xs-left">{{ props.item.email }}</td>
+                <td class="text-xs-left">{{ props.item.start_date }}</td>
+                <td class="text-xs-left">{{ props.item.holidays }} hr</td>
+                <td class="text-xs-left">{{ props.item.holiday }} hr</td>
+                <td class="text-xs-left">{{ props.item.rest }} hr</td>
+            </template>
+        </v-data-table>
+    </v-app>
 </template>
 
 <script>
     export default {
+        props: ['users'],
         data () {
             return {
                 headers: [
@@ -32,26 +35,12 @@
                     { text: '特休剩餘時數', sortable: false },
                     { text: '補休剩餘時數', sortable: false },
                 ],
-                items: [
-                    {
-                        name: 'Nick Zhang',
-                        email: 'nick@robot-tech.com.tw',
-                        start_date: '2017-10-16',
-                        holidays: 24,
-                        holiday: 24,
-                        rest: 0
-                    },
-                    {
-                        name: 'Josh Wang',
-                        email: 'nick@robot-tech.com.tw',
-                        start_date: '2017-10-16',
-                        holidays: 24,
-                        holiday: 24,
-                        rest: 0
-                    },
-                ]
+                items: JSON.parse(this.users)
             }
-        }
+        },
+        // mounted () {
+        //     console.log(JSON.parse(this.users))
+        // }
     }
 </script>
 

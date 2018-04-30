@@ -73,7 +73,9 @@
             @if (Route::has('admin.login'))
                 <div class="top-right links">
                     @auth('admin')
-                        <a href="{{ route('admin.dashboard') }}">
+                        <a href="{{ url('/admin?year=' . \Carbon\Carbon::now()->year
+                           . '&month=' . \Carbon\Carbon::now()->month)
+                           . '&method=AdminCalendar'}}">
                             <span class="w3-large"><strong>管理系統</strong></span>
                         </a>
                     @else

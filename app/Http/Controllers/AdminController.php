@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Filters\ScheduleFilters;
+use App\Schedule;
+use App\Transformers\Schedule\TransformerFactory;
 use Auth;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -22,9 +26,17 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(ScheduleFilters $filters)
     {
-//        dd(Auth::guard('admin')->check());
-        return view('admin');
+        $schedules = Schedule::filter($filters)->get();
+
+        if (request()->exists('method')) {
+            $data = TransformerFactory::create(request('method'))->transform($schedules);
+        }
+
+        $year = Carbon::now()->year;
+        $month = Carbon::now()->month;
+
+        return view('admin', compact('data', 'year', 'month'));
     }
 }

@@ -30,7 +30,7 @@ class ScheduleController extends Controller
     public function index(ScheduleFilters $filters)
     {
         $schedules = Schedule::filter($filters)->get();
-//dd($schedules);
+
         if (request()->exists('method')) {
             return TransformerFactory::create(request('method'))->transform($schedules);
         }

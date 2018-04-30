@@ -101205,7 +101205,7 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -101253,42 +101253,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "Calendar",
+    props: ['schedules'],
     data: function data() {
         return {
-            events: [{
-                title: 'Nick 上班',
-                start: '2018-04-27T08:30:00',
-                end: '2018-04-27T17:30:00',
-                color: '#F44336',
-                textColor: 'white'
-            }, {
-                title: 'Edward 上班',
-                start: '2018-04-27T08:30:00',
-                end: '2018-04-27T17:30:00',
-                color: '#E91E63',
-                textColor: 'white'
-            }, {
-                title: 'Sylvia 請特休 ~ 17:30',
-                start: '2018-04-27T08:30:00',
-                end: '2018-04-27T17:30:00',
-                color: '#2196F3',
-                textColor: 'white'
-            }, {
-                title: 'Mandy 上班',
-                start: '2018-04-27T08:30:00',
-                end: '2018-04-27T17:30:00',
-                color: '#4CAF50',
-                textColor: 'white'
-            }, {
-                title: 'Email 上班',
-                start: '2018-04-27T08:30:00',
-                end: '2018-04-27T17:30:00',
-                color: '#FFC107',
-                textColor: 'white'
-            }],
+            events: JSON.parse(this.schedules),
             config: {
                 defaultView: 'month',
                 locale: 'zh-cn',
@@ -101299,7 +101272,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     right: ''
                 },
                 height: 530
-
             }
         };
     }
@@ -101313,10 +101285,16 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("full-calendar", {
-    ref: "calendar",
-    attrs: { events: _vm.events, config: _vm.config }
-  })
+  return _c(
+    "v-app",
+    [
+      _c("full-calendar", {
+        ref: "calendar",
+        attrs: { events: _vm.events, config: _vm.config }
+      })
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -101414,7 +101392,7 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -101443,8 +101421,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['users'],
     data: function data() {
         return {
             headers: [{
@@ -101452,21 +101433,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 align: 'left',
                 sortable: false
             }, { text: '信箱', sortable: false }, { text: '到職日期', sortable: false }, { text: '特休時數', sortable: false }, { text: '特休剩餘時數', sortable: false }, { text: '補休剩餘時數', sortable: false }],
-            items: [{
-                name: 'Nick Zhang',
-                email: 'nick@robot-tech.com.tw',
-                start_date: '2017-10-16',
-                holidays: 24,
-                holiday: 24,
-                rest: 0
-            }, {
-                name: 'Josh Wang',
-                email: 'nick@robot-tech.com.tw',
-                start_date: '2017-10-16',
-                holidays: 24,
-                holiday: 24,
-                rest: 0
-            }]
+            items: JSON.parse(this.users)
         };
     }
 });
@@ -101479,40 +101446,46 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("v-data-table", {
-    staticClass: "elevation-1",
-    attrs: { headers: _vm.headers, items: _vm.items, "item-key": "id" },
-    scopedSlots: _vm._u([
-      {
-        key: "items",
-        fn: function(props) {
-          return [
-            _c("td", [_vm._v(_vm._s(props.item.name))]),
-            _vm._v(" "),
-            _c("td", { staticClass: "text-xs-left" }, [
-              _vm._v(_vm._s(props.item.email))
-            ]),
-            _vm._v(" "),
-            _c("td", { staticClass: "text-xs-left" }, [
-              _vm._v(_vm._s(props.item.start_date))
-            ]),
-            _vm._v(" "),
-            _c("td", { staticClass: "text-xs-left" }, [
-              _vm._v(_vm._s(props.item.holidays) + " hr")
-            ]),
-            _vm._v(" "),
-            _c("td", { staticClass: "text-xs-left" }, [
-              _vm._v(_vm._s(props.item.holiday) + " hr")
-            ]),
-            _vm._v(" "),
-            _c("td", { staticClass: "text-xs-left" }, [
-              _vm._v(_vm._s(props.item.rest) + " hr")
-            ])
-          ]
-        }
-      }
-    ])
-  })
+  return _c(
+    "v-app",
+    [
+      _c("v-data-table", {
+        staticClass: "elevation-1",
+        attrs: { headers: _vm.headers, items: _vm.items, "item-key": "id" },
+        scopedSlots: _vm._u([
+          {
+            key: "items",
+            fn: function(props) {
+              return [
+                _c("td", [_vm._v(_vm._s(props.item.name))]),
+                _vm._v(" "),
+                _c("td", { staticClass: "text-xs-left" }, [
+                  _vm._v(_vm._s(props.item.email))
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "text-xs-left" }, [
+                  _vm._v(_vm._s(props.item.start_date))
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "text-xs-left" }, [
+                  _vm._v(_vm._s(props.item.holidays) + " hr")
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "text-xs-left" }, [
+                  _vm._v(_vm._s(props.item.holiday) + " hr")
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "text-xs-left" }, [
+                  _vm._v(_vm._s(props.item.rest) + " hr")
+                ])
+              ]
+            }
+          }
+        ])
+      })
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

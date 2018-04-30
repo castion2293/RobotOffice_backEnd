@@ -6,11 +6,11 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <span><strong>行事曆</strong></span>
+                    <span><strong>行事曆 {{ $year }} 年 {{ $month }} 月</strong></span>
                 </div>
 
                 <div class="card-body">
-                    <calendar></calendar>
+                    <calendar schedules="{{ $data }}"></calendar>
                 </div>
             </div>
         </div>
