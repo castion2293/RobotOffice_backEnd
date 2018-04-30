@@ -16,6 +16,8 @@ use Illuminate\Http\Request;
 
 class SchedulePresent extends AbstractScheduleType
 {
+    use ScheduleCheck;
+
     private $user;
 
     public function __construct()
