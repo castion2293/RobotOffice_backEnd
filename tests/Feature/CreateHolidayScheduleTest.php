@@ -145,6 +145,8 @@ class CreateHolidayScheduleTest extends TestCase
     /** @test */
     public function take_特休_cannot_less_than_特休_hours()
     {
+        $this->expectExceptionMessage('剩餘的特休時數不足，請重新選擇時段');
+
         $user = create('App\User', [
             'email' => 'foo@example.com',
             'holiday' => 4
@@ -167,6 +169,8 @@ class CreateHolidayScheduleTest extends TestCase
     /** @test */
     public function take_補休_cannot_less_than_補休_hours()
     {
+        $this->expectExceptionMessage('剩餘的補休時數不足，請重新選擇時段');
+
         $user = create('App\User', [
             'email' => 'foo@example.com',
             'rest' => 4

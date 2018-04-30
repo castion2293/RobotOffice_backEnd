@@ -13,16 +13,6 @@ use Illuminate\Http\Request;
 class ScheduleController extends Controller
 {
     /**
-     * @var ScheduleTransformer
-     */
-//    protected $transformer;
-//
-//    public function __construct(ScheduleTransformer $transformer)
-//    {
-//        $this->transformer = $transformer;
-//    }
-
-    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

@@ -26,22 +26,12 @@ class SchedulePresent extends AbstractScheduleType
     public function post(Request $request)
     {
         if ($request->work == '上班') {
-            if ($this->checkDoubleWorkOnPresent($request)) {
-                return response(['error' => '重複打卡上班，請先刪除之前打卡紀錄，再重新打卡上班'], 400);
-            }
-
-            $this->createPresentForWorkOn($request);
+            $this->authorize(collect(['checkDoubleWorkOnPresent']), $request)
+                 ->createPresentForWorkOn($request);
 
         } else if ($request->work == '下班') {
-            if ($this->checkNoWorkOn($request)) {
-                return response(['error' => '打卡下班前，需先打卡上班'], 400);
-            } else if ($this->checkDoubleWorkOffPresent($request)) {
-                return response(['error' => '重複打卡下班，請先刪除之前打卡紀錄，再重新打卡下班'], 400);
-            } else if ($this->checkOffPresentLaterThanOnPresent($request)) {
-                return response(['error' => '打卡下班時間需晚於打卡上班時間'], 400);
-            }
-
-            $this->createPresentForWorkOff($request);
+            $this->authorize(collect(['checkNoWorkOn', 'checkDoubleWorkOffPresent', 'checkOffPresentLaterThanOnPresent']), $request)
+                ->createPresentForWorkOff($request);
         }
 
         return response(['message' => 'success upload'], 200);
@@ -88,74 +78,6 @@ class SchedulePresent extends AbstractScheduleType
         ]);
     }
 
-    private function checkDoubleWorkOnPresent($request)
-    {
-        $schedule = $this->getSchedule($request);
-
-        if (!$schedule) {
-            return false;
-        }
-
-        $present = $schedule->action()->first();
-
-        if (!$present->begin) {
-            return false;
-        }
-
-        return true;
-    }
-
-    private function checkNoWorkOn($request)
-    {
-        $schedule = $this->getSchedule($request);
-
-        if (!$schedule) {
-            return true;
-        }
-
-        $present = $schedule->action()->first();
-
-        if (!$present->begin) {
-            return true;
-        }
-
-        return false;
-    }
-
-    private function checkDoubleWorkOffPresent($request)
-    {
-        $schedule = $this->getSchedule($request);
-
-        if (!$schedule) {
-            return false;
-        }
-
-        $present = $schedule->action()->first();
-
-        if (!$present->end) {
-            return false;
-        }
-
-        return true;
-    }
-
-    private function checkOffPresentLaterThanOnPresent($request)
-    {
-        $schedule = $this->getSchedule($request);
-
-        $present = $schedule->action()->first();
-
-        if ($present->begin > $request->time) {
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
-     * @param $request
-     * @return mixed
-     */
     private function getSchedule($request)
     {
         return optional($this->user->schedules()->where('date', $request->date))->first();

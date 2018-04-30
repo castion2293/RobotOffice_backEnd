@@ -40,6 +40,8 @@ class CreatePresentScheduleTest extends TestCase
     /** @test */
     public function a_user_cannot_create_another_present_in_same_day()
     {
+        $this->expectExceptionMessage('重複打卡上班，請先刪除之前打卡紀錄，再重新打卡上班');
+
         $present = create('App\Present', ['begin' => '08:30']);
         $schedule = create('App\Schedule', [
             'user_id' => auth()->id(),
@@ -82,6 +84,8 @@ class CreatePresentScheduleTest extends TestCase
     /** @test */
     public function create_an_off_present_need_have_an_on_present()
     {
+        $this->expectExceptionMessage('打卡下班前，需先打卡上班');
+
         $this->post('/api/schedule', [
             'category' => 'Present',
             'work' => '下班',
@@ -93,6 +97,8 @@ class CreatePresentScheduleTest extends TestCase
     /** @test */
     public function a_user_cannot_create_another_off_present_in_same_day()
     {
+        $this->expectExceptionMessage('重複打卡下班，請先刪除之前打卡紀錄，再重新打卡下班');
+
         $present = create('App\Present', [
             'begin' => '08:30',
             'end' => '17:30',
@@ -115,6 +121,8 @@ class CreatePresentScheduleTest extends TestCase
     /** @test */
     public function off_present_cannot_later_than_on_present()
     {
+        $this->expectExceptionMessage('打卡下班時間需晚於打卡上班時間');
+
         $present = create('App\Present', ['begin' => '08:30']);
         $schedule = create('App\Schedule', [
             'user_id' => auth()->id(),

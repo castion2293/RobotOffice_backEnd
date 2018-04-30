@@ -34,18 +34,12 @@ class ScheduleHoliday extends AbstractScheduleType
                 $this->createHolidayForSick($request);
                 break;
             case '特休':
-                if ($this->checkHolidayHours($request)) {
-                    return response(['error' => '剩餘的特休時數不足，請重新選擇時段'], 400);
-                }
-
-                $this->createHolidayForHoliday($request);
+                $this->authorize(collect(['checkHolidayHours']), $request)
+                     ->createHolidayForHoliday($request);
                 break;
             case '補休':
-                if ($this->checkRestHours($request)) {
-                    return response(['error' => '剩餘的補休時數不足，請重新選擇時段'], 400);
-                }
-
-                $this->createHolidayForRest($request);
+                $this->authorize(collect(['checkRestHours']), $request)
+                     ->createHolidayForRest($request);
                 break;
             default:
                 break;
@@ -105,15 +99,15 @@ class ScheduleHoliday extends AbstractScheduleType
         $this->user->save();
     }
 
-    private function checkHolidayHours($request)
-    {
-        return $request->hours > $this->user->holiday;
-    }
+//    private function checkHolidayHours($request)
+//    {
+//        return $request->hours > $this->user->holiday;
+//    }
 
-    private function checkRestHours($request)
-    {
-        return $request->hours > $this->user->rest;
-    }
+//    private function checkRestHours($request)
+//    {
+//        return $request->hours > $this->user->rest;
+//    }
 
     private function createHoliday($request)
     {

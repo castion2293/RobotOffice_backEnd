@@ -14,6 +14,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         'App\Model' => 'App\Policies\ModelPolicy',
+        //'App\Schedule' => 'App\Policies\UserIDCheckPolicy'
     ];
 
     /**
@@ -25,6 +26,12 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('checkDoubleWorkOnPresent', 'App\Policies\PresentPolicy@checkDoubleWorkOnPresent');
+        Gate::define('checkNoWorkOn', 'App\Policies\PresentPolicy@checkNoWorkOn');
+        Gate::define('checkDoubleWorkOffPresent', 'App\Policies\PresentPolicy@checkDoubleWorkOffPresent');
+        Gate::define('checkOffPresentLaterThanOnPresent', 'App\Policies\PresentPolicy@checkOffPresentLaterThanOnPresent');
+
+        Gate::define('checkHolidayHours', 'App\Policies\HolidayPolicy@checkHolidayHours');
+        Gate::define('checkRestHours', 'App\Policies\HolidayPolicy@checkRestHours');
     }
 }
