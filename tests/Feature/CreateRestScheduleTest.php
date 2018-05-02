@@ -22,7 +22,7 @@ class CreateRestScheduleTest extends TestCase
     {
         $rest_hours = auth()->user()->rest;
 
-        $this->post('/api/schedule', [
+        $this->json('post', '/api/schedule', [
             'category' => 'Rest',
             'date' => '2018-04-29',
             'begin' => '18:30',
@@ -65,7 +65,7 @@ class CreateRestScheduleTest extends TestCase
             'action_id' => $rest->id
         ]);
 
-        $this->delete('/api/schedule/' . $schedule->id)->assertStatus(200);
+        $this->json('delete', '/api/schedule/' . $schedule->id)->assertStatus(200);
 
         $this->assertDatabaseMissing('schedules', [
             'date' => '2018-04-29',

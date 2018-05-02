@@ -57,8 +57,12 @@
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('admin.employees') }}">
+                                    <a class="dropdown-item" href="{{ url('admin/employee') }}">
                                         <span><strong>員工資料</strong></span>
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ url('admin/employee/create') }}">
+                                        <span><strong>新增員工</strong></span>
                                     </a>
 
                                     <a class="dropdown-item" href="{{ route('admin.logout') }}"

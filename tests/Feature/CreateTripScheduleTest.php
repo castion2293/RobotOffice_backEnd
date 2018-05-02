@@ -20,7 +20,7 @@ class CreateTripScheduleTest extends TestCase
     /** @test */
     public function a_user_can_create_a_trip()
     {
-        $this->post('/api/schedule', [
+        $this->json('post', '/api/schedule', [
             'category' => 'Trip',
             'date' => '2018-04-25',
             'begin' => '08:30',
@@ -59,7 +59,7 @@ class CreateTripScheduleTest extends TestCase
             'action_id' => $trip->id
         ]);
 
-        $this->delete('/api/schedule/' . $schedule->id)->assertStatus(200);
+        $this->json('delete', '/api/schedule/' . $schedule->id)->assertStatus(200);
 
         $this->assertDatabaseMissing('schedules', [
             'date' => '2018-04-29',

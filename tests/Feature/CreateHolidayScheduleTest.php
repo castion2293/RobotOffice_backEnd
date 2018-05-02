@@ -23,7 +23,7 @@ class CreateHolidayScheduleTest extends TestCase
     {
         $type = create('App\Type', ['type' => '事假']);
 
-        $this->post('/api/schedule', [
+        $this->json('POST', '/api/schedule', [
             'category' => 'Holiday',
             'date' => '2018-04-19',
             'begin' => '08:30',
@@ -52,7 +52,7 @@ class CreateHolidayScheduleTest extends TestCase
     {
         $type = create('App\Type', ['type' => '病假']);
 
-        $this->post('/api/schedule', [
+        $this->json('POST', '/api/schedule', [
             'category' => 'Holiday',
             'date' => '2018-04-20',
             'begin' => '08:30',
@@ -83,7 +83,7 @@ class CreateHolidayScheduleTest extends TestCase
 
         $type = create('App\Type', ['type' => '特休']);
 
-        $this->post('/api/schedule', [
+        $this->json('POST', '/api/schedule', [
             'category' => 'Holiday',
             'date' => '2018-04-21',
             'begin' => '08:30',
@@ -116,7 +116,7 @@ class CreateHolidayScheduleTest extends TestCase
 
         $type = create('App\Type', ['type' => '補休']);
 
-        $this->post('/api/schedule', [
+        $this->json('POST', '/api/schedule', [
             'category' => 'Holiday',
             'date' => '2018-04-22',
             'begin' => '08:30',
@@ -156,7 +156,7 @@ class CreateHolidayScheduleTest extends TestCase
 
         $type = create('App\Type', ['type' => '特休']);
 
-        $this->post('/api/schedule', [
+        $this->json('POST', '/api/schedule', [
             'category' => 'Holiday',
             'date' => '2018-04-18',
             'begin' => '08:30',
@@ -180,7 +180,7 @@ class CreateHolidayScheduleTest extends TestCase
 
         $type = create('App\Type', ['type' => '補休']);
 
-        $this->post('/api/schedule', [
+        $this->json('POST', '/api/schedule', [
             'category' => 'Holiday',
             'date' => '2018-04-19',
             'begin' => '08:30',
@@ -210,7 +210,7 @@ class CreateHolidayScheduleTest extends TestCase
             'action_id' => $holiday->id
         ]);
 
-        $this->delete('/api/schedule/' . $schedule->id)->assertStatus(200);
+        $this->json('delete', '/api/schedule/' . $schedule->id)->assertStatus(200);
 
         $this->assertDatabaseMissing('schedules', [
             'date' => '2018-04-30',
@@ -249,7 +249,7 @@ class CreateHolidayScheduleTest extends TestCase
             'action_id' => $holiday->id
         ]);
 
-        $this->delete('/api/schedule/' . $schedule->id)->assertStatus(200);
+        $this->json('delete', '/api/schedule/' . $schedule->id)->assertStatus(200);
 
         $this->assertDatabaseMissing('schedules', [
             'date' => '2018-04-30',
@@ -297,7 +297,7 @@ class CreateHolidayScheduleTest extends TestCase
             'action_id' => $holiday->id
         ]);
 
-        $this->delete('/api/schedule/' . $schedule->id)->assertStatus(200);
+        $this->json('delete', '/api/schedule/' . $schedule->id)->assertStatus(200);
 
         $this->assertDatabaseMissing('schedules', [
             'date' => '2018-04-30',
@@ -347,7 +347,7 @@ class CreateHolidayScheduleTest extends TestCase
             'action_id' => $holiday->id
         ]);
 
-        $this->delete('/api/schedule/' . $schedule->id)->assertStatus(200);
+        $this->json('delete', '/api/schedule/' . $schedule->id)->assertStatus(200);
 
         $this->assertDatabaseMissing('schedules', [
             'date' => '2018-04-30',

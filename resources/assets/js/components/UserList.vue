@@ -7,7 +7,7 @@
                 class="elevation-1"
         >
             <template slot="items" slot-scope="props">
-                <td>{{ props.item.name }}</td>
+                <td><a :href="'/admin/employee/' + props.item.name">{{ props.item.name }}</a></td>
                 <td class="text-xs-left">{{ props.item.email }}</td>
                 <td class="text-xs-left">{{ props.item.start_date }}</td>
                 <td class="text-xs-left">{{ props.item.holidays }} hr</td>

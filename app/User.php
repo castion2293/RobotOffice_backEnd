@@ -22,7 +22,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'start_date', 'holiday_days', 'holiday', 'rest'
     ];
 
     /**
@@ -33,6 +33,8 @@ class User extends Authenticatable implements JWTSubject
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    protected $with = 'schedules';
 
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
@@ -57,5 +59,10 @@ class User extends Authenticatable implements JWTSubject
     public function schedules()
     {
         return $this->hasOne('App\Schedule');
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'name';
     }
 }

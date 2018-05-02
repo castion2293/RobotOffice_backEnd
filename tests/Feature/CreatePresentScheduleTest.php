@@ -20,7 +20,7 @@ class CreatePresentScheduleTest extends TestCase
     /** @test */
     public function a_user_can_create_a_present_schedule()
     {
-        $this->post('/api/schedule', [
+        $this->json('POST', '/api/schedule', [
             'category' => 'Present',
             'work' => '上班',
             'date' => '2018-04-19',
@@ -50,7 +50,7 @@ class CreatePresentScheduleTest extends TestCase
             'action_id' => $present->id
         ]);
 
-        $this->post('/api/schedule', [
+        $this->json('POST','/api/schedule', [
             'category' => 'Present',
             'work' => '上班',
             'date' => '2018-04-20',
@@ -69,7 +69,7 @@ class CreatePresentScheduleTest extends TestCase
             'action_id' => $present->id
         ]);
 
-        $this->post('/api/schedule', [
+        $this->json('POST', '/api/schedule', [
             'category' => 'Present',
             'work' => '下班',
             'date' => '2018-04-20',
@@ -131,7 +131,7 @@ class CreatePresentScheduleTest extends TestCase
             'action_id' => $present->id
         ]);
 
-        $this->post('/api/schedule', [
+        $this->json('POST', '/api/schedule', [
             'category' => 'Present',
             'work' => '下班',
             'date' => '2018-04-23',
@@ -154,7 +154,7 @@ class CreatePresentScheduleTest extends TestCase
             'action_id' => $present->id
         ]);
 
-        $this->delete('/api/schedule/' . $schedule->id)->assertStatus(200);
+        $this->json('delete', '/api/schedule/' . $schedule->id)->assertStatus(200);
 
         $this->assertDatabaseMissing('schedules', [
             'date' => '2018-04-29',

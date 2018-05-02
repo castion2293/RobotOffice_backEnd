@@ -41,7 +41,7 @@ class ReadScheduleTest extends TestCase
             ])->id
         ]);
 
-        $this->get('/api/schedule?year=2018&type=Present&method=PresentAnalysis')
+        $this->json('get','/api/schedule?year=2018&type=Present&method=PresentAnalysis')
                 ->assertJson([
                     'data' => [
                         [
@@ -94,7 +94,7 @@ class ReadScheduleTest extends TestCase
             'action_id' => $holiday2->id
         ]);
 
-        $this->get('/api/schedule?year=2018&type=Holiday&method=HolidayAnalysis')
+        $this->json('get', '/api/schedule?year=2018&type=Holiday&method=HolidayAnalysis')
             ->assertJson([
                 'data' => [
                     [
@@ -143,7 +143,7 @@ class ReadScheduleTest extends TestCase
             ]),
         ]);
 
-        $this->get('/api/schedule?year=2018&type=Trip&method=TripAnalysis')
+        $this->json('get', '/api/schedule?year=2018&type=Trip&method=TripAnalysis')
             ->assertJson([
                 'data' => [
                     [
@@ -192,7 +192,7 @@ class ReadScheduleTest extends TestCase
             ]),
         ]);
 
-        $this->get('/api/schedule?year=2018&type=Rest&method=RestAnalysis')
+        $this->json('get', '/api/schedule?year=2018&type=Rest&method=RestAnalysis')
             ->assertJson([
                 'data' => [
                     [

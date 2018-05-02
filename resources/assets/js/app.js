@@ -28,12 +28,16 @@ Vue.use(FullCalendar)
 import example from './components/ExampleComponent'
 import calendar from './components/Calendar'
 import Userlists from './components/UserList'
+import UserInfo from './components/UserInfo'
+import UserPresentList from './components/UserPresentList'
 
 const app = new Vue({
     el: '#app',
     components: {
         example,
         calendar,
-        Userlists
+        Userlists,
+        UserInfo,
+        UserPresentList
     },
 });
