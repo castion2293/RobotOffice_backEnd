@@ -76,17 +76,27 @@ class UserController extends Controller
     {
        $user = User::whereName($name)->first();
 
-       $presents = $user->schedules->where('action_type', 'App\\Present')->get();
-       $holidays = $user->schedules->where('action_type', 'App\\Holiday')->get();
-       $trips = $user->schedules->where('action_type', 'App\\Trip')->get();
-       $rests = $user->schedules->where('action_type', 'App\\Rest')->get();
+       if (!!$user->schedules) {
+           $presents = $user->schedules()->where('action_type', 'App\\Present')->get();
+           $holidays = $user->schedules()->where('action_type', 'App\\Holiday')->get();
+           $trips = $user->schedules()->where('action_type', 'App\\Trip')->get();
+           $rests = $user->schedules()->where('action_type', 'App\\Rest')->get();
+
+           return view('employeeShow', [
+               'name' => $user->name,
+               'presents' => TransformerFactory::create('PresentAnalysis')->transform($presents),
+               'holidays' => TransformerFactory::create('HolidayAnalysis')->transform($holidays),
+               'trips' => TransformerFactory::create('TripAnalysis')->transform($trips),
+               'rests' => TransformerFactory::create('RestAnalysis')->transform($rests),
+           ]);
+       }
 
        return view('employeeShow', [
            'name' => $user->name,
-           'presents' => TransformerFactory::create('PresentAnalysis')->transform($presents),
-           'holidays' => TransformerFactory::create('HolidayAnalysis')->transform($holidays),
-           'trips' => TransformerFactory::create('TripAnalysis')->transform($trips),
-           'rests' => TransformerFactory::create('RestAnalysis')->transform($rests),
+           'presents' => TransformerFactory::create('PresentAnalysis')->transform(collect([])),
+           'holidays' => TransformerFactory::create('HolidayAnalysis')->transform(collect([])),
+           'trips' => TransformerFactory::create('TripAnalysis')->transform(collect([])),
+           'rests' => TransformerFactory::create('RestAnalysis')->transform(collect([])),
        ]);
     }
 

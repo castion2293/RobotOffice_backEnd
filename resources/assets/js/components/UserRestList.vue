@@ -6,16 +6,18 @@
                 grid-list-lg
         >
             <v-data-table
-                    :headers="headers"
-                    :items="items"
+                    v-bind:headers="headers"
+                    v-bind:items="items"
                     item-key="id"
                     class="elevation-1"
                     :rows-per-page-items="row_per_page"
             >
                 <template slot="items" slot-scope="props">
                     <td class="text-xs-left">{{ props.item.date }}</td>
+                    <td class="text-xs-left">{{ props.item.reason }}</td>
                     <td class="text-xs-left">{{ props.item.begin.substring(0, 5) }}</td>
-                    <td class="text-xs-left">{{ (!!props.item.end) ? props.item.end.substring(0, 5) :　"未打卡"}}</td>
+                    <td class="text-xs-left">{{ props.item.end.substring(0, 5) }}</td>
+                    <td class="text-xs-left">{{ props.item.hours }}hr</td>
                 </template>
             </v-data-table>
         </v-container>
@@ -24,8 +26,8 @@
 
 <script>
     export default {
-        name: "UserPresentList",
-        props: ['presents'],
+        name: "UserRestList",
+        props: ['rests'],
         data () {
             return {
                 items: [],
@@ -36,14 +38,16 @@
                         sortable: false,
 
                     },
-                    { text: '上班時間', sortable: false },
-                    { text: '下班時間', sortable: false },
+                    { text: '事由', sortable: false },
+                    { text: '開始', sortable: false },
+                    { text: '結束', sortable: false },
+                    { text: '時數', sortable: false },
                 ],
                 row_per_page: [10, 25, 50, { text: "All", value: -1 }],
             }
         },
         mounted () {
-            this.items = this.presents
+            this.items = this.rests
         }
     }
 </script>

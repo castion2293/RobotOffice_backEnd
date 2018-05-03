@@ -58,7 +58,7 @@ class User extends Authenticatable implements JWTSubject
 
     public function schedules()
     {
-        return $this->hasOne('App\Schedule');
+        return $this->hasOne('App\Schedule', 'user_id');
     }
 
     public function getRouteKeyName()

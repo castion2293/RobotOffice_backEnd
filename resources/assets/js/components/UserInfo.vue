@@ -13,7 +13,7 @@
                             <strong>天數: {{ presents.count }}天</strong>
                         </v-card-title>
                         <v-card class="white">
-                            <!--<user-present-list :present="user_data.schedules"></user-present-list>-->
+                            <UserPresentList :presents="presents.data"></UserPresentList>
                         </v-card>
                     </v-card>
                 </v-flex>
@@ -25,7 +25,7 @@
                             <strong>總時數: {{ holidays.hours_count }}小時</strong>
                         </v-card-title>
                         <v-card class="white">
-                            <!--<holidayList></holidayList>-->
+                            <UserHolidayList :holidays="holidays.data"></UserHolidayList>
                         </v-card>
                     </v-card>
                 </v-flex>
@@ -37,7 +37,7 @@
                             <strong>總時數: {{ trips.hours_count }}小時</strong>
                         </v-card-title>
                         <v-card class="white">
-                            <!--<tripList></tripList>-->
+                            <UserTripList :trips="trips.data"></UserTripList>
                         </v-card>
                     </v-card>
                 </v-flex>
@@ -49,7 +49,7 @@
                             <strong>總時數: {{ rests.hours_count }}小時</strong>
                         </v-card-title>
                         <v-card class="white">
-                            <!--<restList></restList>-->
+                            <UserRestList :rests="rests.data"></UserRestList>
                         </v-card>
                     </v-card>
                 </v-flex>
@@ -59,13 +59,19 @@
 </template>
 
 <script>
+    import UserPresentList from './UserPresentList'
+    import UserHolidayList from './UserHolidayList'
+    import UserTripList from './UserTripList'
+    import UserRestList from './UserRestList'
+
     export default {
         name: "UserInfo",
         props: ['presents', 'holidays', 'trips', 'rests'],
-        data () {
-            return {
-                user_data: this.user
-            }
+        components: {
+            UserPresentList,
+            UserHolidayList,
+            UserTripList,
+            UserRestList
         },
     }
 </script>
