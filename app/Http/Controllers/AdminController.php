@@ -34,8 +34,8 @@ class AdminController extends Controller
             $data = TransformerFactory::create(request('method'))->transform($schedules);
         }
 
-        $year = Carbon::now()->year;
-        $month = Carbon::now()->month;
+        $year = request()->year;
+        $month = request()->month;
 
         return view('admin', compact('data', 'year', 'month'));
     }

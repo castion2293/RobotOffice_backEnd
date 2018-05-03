@@ -26,7 +26,7 @@ Vue.use(FullCalendar)
 
 //Vue.component('exampleComponent', require('./components/ExampleComponent.vue'));
 import example from './components/ExampleComponent'
-import calendar from './components/Calendar'
+import CalendarView from './components/CalendarView'
 import Userlists from './components/UserList'
 import UserInfo from './components/UserInfo'
 
@@ -34,7 +34,7 @@ const app = new Vue({
     el: '#app',
     components: {
         example,
-        calendar,
+        CalendarView,
         Userlists,
         UserInfo
     },
