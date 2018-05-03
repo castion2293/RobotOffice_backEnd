@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UsercreateRequest;
+use App\Http\Requests\UserResetPasswordRequest;
+use App\Http\Requests\UserResetProfileRequest;
 use App\Transformers\Schedule\TransformerFactory;
 use App\Transformers\Schedule\TransformerPresentAnalysis;
 use App\User;
@@ -132,5 +134,37 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         //
+    }
+
+    /**
+     * @param UserResetProfileRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function resetUserProfile(UserResetProfileRequest $request)
+    {
+        $user = auth()->user();
+
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email
+        ]);
+
+        return response()->json(auth()->user());
+    }
+
+    public function resetUserPassword(UserResetPasswordRequest $request)
+    {
+        $user = auth()->user();
+
+        if (password_verify($request->old_password, $user->password)) {
+            $user->update([
+                'password' =>  bcrypt($request->password)
+            ]);
+
+            return response()->json(auth()->user());
+        } else {
+//            return response()->json(['message' => '舊密碼輸入錯誤'], 404);
+            abort(404, '舊密碼輸入錯誤');
+        }
     }
 }

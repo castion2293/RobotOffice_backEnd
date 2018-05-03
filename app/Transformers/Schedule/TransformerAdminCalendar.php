@@ -47,22 +47,10 @@ class TransformerAdminCalendar extends AbstractTransformerType
 
     private function checkColor($id)
     {
-        switch ($id) {
-            case 1:
-                return '#4FC3F7';
-                break;
-            case 2:
-                return '#81C784';
-                break;
-            case 3:
-                return '#FFA726';
-                break;
-            case 4:
-                return '#EF5350';
-                break;
-            default:
-                break;
-        }
+        $color = ['#E53935', '#F50057', '#7B1FA2', '#512DA8', '#303F9F', '#1E88E5',
+                    '#039BE5', '#00838F', '#43A047', '#C0CA33'];
+
+        return $color[$id % 10];
     }
 
     /**

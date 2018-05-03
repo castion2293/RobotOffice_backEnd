@@ -24,6 +24,6 @@ class TransformerTripAnalysis extends AbstractTransformerType
             ];
         }))->put('hours_count', $attributes->reduce(function ($carry, $schedule) {
             return $carry + $schedule->action->hours;
-        }));
+        }))->put('count', $attributes->count());
     }
 }
