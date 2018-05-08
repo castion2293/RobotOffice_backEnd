@@ -24,6 +24,8 @@ Vue.use(FullCalendar)
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+import Chart from 'chart.js'
+
 //Vue.component('exampleComponent', require('./components/ExampleComponent.vue'));
 import example from './components/ExampleComponent'
 import CalendarView from './components/CalendarView'

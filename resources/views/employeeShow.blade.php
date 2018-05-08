@@ -6,10 +6,11 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <span><strong>員工資料: {{ $name }}</strong></span>
+                        <span><strong>員工資料: {{ $user->name }}</strong></span>
                     </div>
 
                     <user-info
+                        :user="{{ $user }}"
                         :presents="{{ $presents }}"
                         :holidays="{{ $holidays }}"
                         :trips="{{ $trips }}"

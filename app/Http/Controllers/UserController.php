@@ -85,7 +85,7 @@ class UserController extends Controller
            $rests = $user->schedules()->where('action_type', 'App\\Rest')->get();
 
            return view('employeeShow', [
-               'name' => $user->name,
+               'user' => $user,
                'presents' => TransformerFactory::create('PresentAnalysis')->transform($presents),
                'holidays' => TransformerFactory::create('HolidayAnalysis')->transform($holidays),
                'trips' => TransformerFactory::create('TripAnalysis')->transform($trips),
@@ -94,7 +94,7 @@ class UserController extends Controller
        }
 
        return view('employeeShow', [
-           'name' => $user->name,
+           'user' => $user,
            'presents' => TransformerFactory::create('PresentAnalysis')->transform(collect([])),
            'holidays' => TransformerFactory::create('HolidayAnalysis')->transform(collect([])),
            'trips' => TransformerFactory::create('TripAnalysis')->transform(collect([])),
