@@ -10,6 +10,8 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+        <link rel="icon" href="https://tenten.co/blog/wp-content/uploads/2014/07/laravel.jpg">
         <!-- Styles -->
         <style>
             html, body {
